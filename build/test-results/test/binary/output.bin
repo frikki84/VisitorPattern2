@@ -1,0 +1,2 @@
+êexpected tree TreeNode{Tree{value=4, color=RED, depth=0} children=[Tree{value=7, color=GREEN, depth=1}, TreeNode{Tree{value=2, color=RED, depth=1} children=[Tree{value=5, color=RED, depth=2}, Tree{value=12, color=GREEN, depth=2}]}]}
+TreeNode{Tree{value=4, color=RED, depth=0} children=[Tree{value=7, color=GREEN, depth=1}, Tree{value=2, color=RED, depth=1}]}
