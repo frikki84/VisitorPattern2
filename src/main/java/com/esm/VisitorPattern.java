@@ -2,9 +2,13 @@ package com.esm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 enum Color {
     RED, GREEN
@@ -189,50 +193,90 @@ public class VisitorPattern {
         int nodeNumber = findNodeNumber(inputValues);
         List<Integer> values = findValues(inputValues);
         List<Color> colors = findColorList(inputValues);
-        HashMap<Integer, List<Integer>> edges = findEdgesMap(inputValues);
+        LinkedHashMap<Integer, List<Integer>> edges = findEdgesMap(inputValues);
 
         return null;
     }
 
     public static Tree createRootTree(int nodeNumber, List<Integer> values, List<Color> colors,
             HashMap<Integer, List<Integer>> edges) {
-        TreeNode tree = null;
-        //        for (int i = 1; i <= 1; i ++) {
+//        TreeNode tree = null;
+//        //        for (int i = 1; i <= 1; i ++) {
+//        //
+//        //            if(edges.containsKey(i)) {
+//        int depth = 0;
+//        tree = new TreeNode(values.get(0), colors.get(0), depth);
+//        depth++;
+//
+//
+//
+//        //                for (int j = 0; j < edges.get(0).size(); j ++) {
+//        //                    Tree nodeTree = null;
+//        //                    int k = edges.get(0).get(j) -1;
+//        //                    if (edges.containsKey(edges.get(j))) {
+//        //                        nodeTree = new TreeNode(values.get(k), colors.get(k), depth);
+//        //
+//        //                    } else {
+//        //                        nodeTree = new TreeLeaf(values.get(k), colors.get(k), depth);
+//        //                    }
+//        //                    tree.addChild(nodeTree);
+//        //                }
+//        //            }
+//        for (int j = 0; j < edges.get(0).size(); j++) {
+//            int k = edges.get(0).get(j) - 1;
+//            TreeNode treeNode = new TreeNode(values.get(k), colors.get(k), depth);
+//             while (edges.containsKey(edges.get(0).get(j))) {
+//                int ko = edges.get(0).get(j) - 1;
+//
+//
+//             }
+//
+        //            tree.addChild(treeNode);
+        //        }
+        //        edges.remove(edges.get(1));
         //
-        //            if(edges.containsKey(i)) {
-        int depth = 0;
-        tree = new TreeNode(values.get(0), colors.get(0), depth);
-        depth++;
-        //                for (int j = 0; j < edges.get(0).size(); j ++) {
-        //                    Tree nodeTree = null;
-        //                    int k = edges.get(0).get(j) -1;
-        //                    if (edges.containsKey(edges.get(j))) {
-        //                        nodeTree = new TreeNode(values.get(k), colors.get(k), depth);
-        //
-        //                    } else {
-        //                        nodeTree = new TreeLeaf(values.get(k), colors.get(k), depth);
-        //                    }
-        //                    tree.addChild(nodeTree);
-        //                }
-        //            }
-        for (int j = 0; j < edges.get(0).size(); j++) {
-            int k = edges.get(0).get(j) - 1;
-            TreeNode treeNode = new TreeNode(values.get(k), colors.get(k), depth);
-             while (edges.containsKey(edges.get(0).get(j))) {
-                int ko = edges.get(0).get(j) - 1;
+        //        System.out.println(tree);
+//
+//        List<TreeNode> middleList = new ArrayList<>();
+//        int depth = 0;
+//        for (Integer key : edges.keySet()) {
+//            middleList.add(createTree(key, values, colors, depth));
+//        }
+//        System.out.println("middleList " + middleList);
 
-
-             }
-            tree.addChild(treeNode);
+        LinkedList<Integer> checkList = new LinkedList<>();
+        for (int i = 1; i <= nodeNumber; i ++) {
+            checkList.add(i);
         }
-        edges.remove(edges.get(1));
+        int depth = 0;
+        TreeNode mainNode = createTree(1, values, colors, depth);
+        checkList.removeFirstOccurrence(1);
 
-        System.out.println(tree);
-
+        for(int i = 1; i<= nodeNumber; i ++) {
+            if (edges.containsKey(i)) {
+                for (int j = 0; j < edges.get(i).size(); j++) {
+                    depth++;
+                    int number = edges.get(i).get(j);
+                    if (checkList.contains(number)) {
+                        TreeNode treeNode = createTree(number, values, colors, depth);
+                        mainNode.addChild(treeNode);
+                        checkList.removeFirstOccurrence(number);
+                    }
+                    depth++;
+                }
+            }
+        }
+        System.out.println("mainNode " + mainNode);
+        System.out.println("checkList "+ checkList);
 
 
 
         return null;
+}
+
+public static TreeNode createTree(int number, List<Integer> values, List<Color> colors, int depth) {
+        int arrayNumber = number -1;
+        return new TreeNode(values.get(arrayNumber), colors.get(arrayNumber), depth);
 }
 
     public static List<Integer> createValuesArray() {
@@ -277,13 +321,13 @@ public class VisitorPattern {
         return colors;
     }
 
-    public static HashMap<Integer, List<Integer>> findEdgesMap(List<Integer> list) {
+    public static LinkedHashMap<Integer, List<Integer>> findEdgesMap(List<Integer> list) {
         Integer nodeNumber = findNodeNumber(list);
         List<Integer> edgeIntegerList = new ArrayList<>();
         for (int i = nodeNumber * 2 + 1; i < list.size(); i++) {
             edgeIntegerList.add(list.get(i));
         }
-        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        LinkedHashMap<Integer, List<Integer>> map = new LinkedHashMap<>();
         List<Integer> value = new ArrayList<>();
         value.add(edgeIntegerList.get(1));
         map.put(edgeIntegerList.get(0), value);

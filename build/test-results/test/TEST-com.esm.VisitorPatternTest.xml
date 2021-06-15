@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.esm.VisitorPatternTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-06-08T20:04:12" hostname="DESKTOP-N99POAQ" time="0.051">
+<testsuite name="com.esm.VisitorPatternTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-06-15T20:09:28" hostname="DESKTOP-N99POAQ" time="0.043">
   <properties/>
-  <testcase name="createRootTree()" classname="com.esm.VisitorPatternTest" time="0.051">
+  <testcase name="createRootTree()" classname="com.esm.VisitorPatternTest" time="0.043">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;TreeNode{Tree{value=4, color=RED, depth=0} children=[Tree{value=7, color=GREEN, depth=1}, TreeNode{Tree{value=2, color=RED, depth=1} children=[Tree{value=5, color=RED, depth=2}, Tree{value=12, color=GREEN, depth=2}]}]}&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;TreeNode{Tree{value=4, color=RED, depth=0} children=[Tree{value=7, color=GREEN, depth=1}, TreeNode{Tree{value=2, color=RED, depth=1} children=[Tree{value=5, color=RED, depth=2}, Tree{value=12, color=GREEN, depth=2}]}]}&gt; but was: &lt;null&gt;
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
-	at com.esm.VisitorPatternTest.createRootTree(VisitorPatternTest.java:73)
+	at com.esm.VisitorPatternTest.createRootTree(VisitorPatternTest.java:74)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -102,7 +102,8 @@
 </failure>
   </testcase>
   <system-out><![CDATA[expected tree TreeNode{Tree{value=4, color=RED, depth=0} children=[Tree{value=7, color=GREEN, depth=1}, TreeNode{Tree{value=2, color=RED, depth=1} children=[Tree{value=5, color=RED, depth=2}, Tree{value=12, color=GREEN, depth=2}]}]}
-TreeNode{Tree{value=4, color=RED, depth=0} children=[Tree{value=7, color=GREEN, depth=1}, Tree{value=2, color=RED, depth=1}]}
+mainNode TreeNode{Tree{value=4, color=RED, depth=0} children=[TreeNode{Tree{value=7, color=GREEN, depth=1} children=[]}, TreeNode{Tree{value=2, color=RED, depth=3} children=[]}, TreeNode{Tree{value=5, color=RED, depth=5} children=[]}, TreeNode{Tree{value=12, color=GREEN, depth=7} children=[]}]}
+checkList []
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

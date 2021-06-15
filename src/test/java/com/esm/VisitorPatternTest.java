@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -65,11 +66,10 @@ class VisitorPatternTest {
         tree2.addChild(tree3);
         tree2.addChild(tree4);
         System.out.println("expected tree " + expected);
-
         int nodeNumber = VisitorPattern.findNodeNumber(list);
         List<Integer> values = VisitorPattern.findValues(list);
         List<Color>colors = VisitorPattern.findColorList(list);
-        HashMap<Integer, List<Integer>> edges = VisitorPattern.findEdgesMap(list);
+        LinkedHashMap<Integer, List<Integer>> edges = VisitorPattern.findEdgesMap(list);
         Tree created = VisitorPattern.createRootTree(nodeNumber, values, colors, edges);
         assertEquals(expected, created);
 
